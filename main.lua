@@ -7520,6 +7520,11 @@ UDim2.fromOffset(an.UIElements.MenuCanvas.AbsoluteSize.X,av)
 end
 end
 
+aj.AddSignal(an.UIElements.UIListLayout:GetPropertyChangedSignal"AbsoluteContentSize",function()
+RecalculateCanvasSize()
+RecalculateListSize()
+end)
+
 function UpdatePosition()
 local as=an.UIElements.Dropdown or an.DropdownFrame.UIElements.Main
 local at=an.UIElements.MenuCanvas
@@ -7680,6 +7685,11 @@ end,true)
 as.Size=UDim2.new(1,0,0,ao.SearchBarHeight)
 as.Position=UDim2.new(0,0,0,0)
 as.Name="SearchBar"
+
+task.defer(function()
+RecalculateCanvasSize()
+RecalculateListSize()
+end)
 end
 end
 
@@ -7958,6 +7968,11 @@ an.UIElements.MenuCanvas.Size.Y.Offset
 Callback()
 
 an.Values=au
+
+task.defer(function()
+RecalculateCanvasSize()
+RecalculateListSize()
+end)
 end
 
 ar:Refresh(an.Values)
